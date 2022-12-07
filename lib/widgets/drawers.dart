@@ -1,5 +1,7 @@
 import 'package:csbapp/constant/color_const.dart';
 import 'package:csbapp/global/drawer_key.dart';
+import 'package:csbapp/view/auth/login.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidgets extends StatefulWidget {
@@ -47,20 +49,31 @@ class _DrawerWidgetsState extends State<DrawerWidgets> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                      child: Container(
-                        height: 50,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFFB81A0D),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Logout",
-                            style: TextStyle(
-                              fontFamily: 'PopM',
-                              fontSize: 19,
-                              color: white,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => LoginScreen(),
+                            ),
+                            (route) => false,
+                          );
+                        },
+                        child: Container(
+                          height: 50,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xFFB81A0D),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Logout",
+                              style: TextStyle(
+                                fontFamily: 'PopM',
+                                fontSize: 19,
+                                color: white,
+                              ),
                             ),
                           ),
                         ),
