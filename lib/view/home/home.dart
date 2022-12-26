@@ -1,7 +1,12 @@
 import 'package:csbapp/constant/color_const.dart';
+import 'package:csbapp/view/home/all_main_screens/pre_ini_track.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
+
+import 'all_main_screens/post_ini_track.dart';
+import 'all_main_screens/proposal.dart';
 
 class HomeSection extends StatefulWidget {
   const HomeSection({super.key});
@@ -218,121 +223,151 @@ class _HomeSectionState extends State<HomeSection> {
               SizedBox(
                 height: 15,
               ),
-              Container(
-                height: 200,
-                width: MediaQuery.of(context).size.width / 1.1,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: primaryColor,
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 10,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => PreIniTracking(),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        'assets/icons/preIn.png',
-                        height: 55,
+                  );
+                },
+                child: Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width / 1.1,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: primaryColor,
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Pre- Inititation Physical Tracking ',
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontFamily: 'PopB',
-                          fontSize: 21,
-                          color: white,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/icons/preIn.png',
+                          height: 55,
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
+                      Expanded(
+                        child: Text(
+                          'Pre- Inititation Physical Tracking ',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopB',
+                            fontSize: 21,
+                            color: white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
                 height: 15,
               ),
-              Container(
-                height: 200,
-                width: MediaQuery.of(context).size.width / 1.1,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: primaryColor,
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 10,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => PostIniTracking(),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        'assets/icons/postIn.png',
-                        height: 55,
+                  );
+                },
+                child: Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width / 1.1,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: primaryColor,
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Post- Inititation Physical Tracking ',
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontFamily: 'PopB',
-                          fontSize: 21,
-                          color: white,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/icons/postIn.png',
+                          height: 55,
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
+                      Expanded(
+                        child: Text(
+                          'Post- Inititation Physical Tracking ',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopB',
+                            fontSize: 21,
+                            color: white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
                 height: 15,
               ),
-              Container(
-                height: 200,
-                width: MediaQuery.of(context).size.width / 1.1,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: primaryColor,
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 10,
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => ProposalIniTracking(),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        'assets/icons/proposals.png',
-                        height: 55,
+                  );
+                },
+                child: Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width / 1.1,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: primaryColor,
+                  ),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Proposal Status',
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontFamily: 'PopB',
-                          fontSize: 21,
-                          color: white,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/icons/proposals.png',
+                          height: 55,
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
+                      Expanded(
+                        child: Text(
+                          'Proposal Status',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopB',
+                            fontSize: 21,
+                            color: white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],

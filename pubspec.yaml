@@ -41,6 +41,9 @@ dependencies:
   otp_timer_button: ^1.1.0
   awesome_dialog: ^3.0.2
   lazy_data_table: ^0.3.1
+  shared_preferences: ^2.0.15
+  
+  
 
 dev_dependencies:
   flutter_test:

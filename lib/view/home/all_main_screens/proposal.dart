@@ -1,285 +1,592 @@
-import 'package:csbapp/constant/color_const.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:lazy_data_table/lazy_data_table.dart';
 
-class HistorySection extends StatefulWidget {
-  const HistorySection({super.key});
+import '../../../constant/color_const.dart';
+
+class ProposalIniTracking extends StatefulWidget {
+  const ProposalIniTracking({super.key});
 
   @override
-  State<HistorySection> createState() => _HistorySectionState();
+  State<ProposalIniTracking> createState() => _ProposalIniTrackingState();
 }
 
-class _HistorySectionState extends State<HistorySection> {
+class _ProposalIniTrackingState extends State<ProposalIniTracking> {
   //Todays Time
   var dt = DateTime.now();
+
+  // Initial Selected Value
+  String dropdownvalue = 'Proposal 1';
+
+  // List of items in our dropdown menu
+  var items = [
+    'Proposal 1',
+    'Proposal 2',
+    'Proposal 3',
+    'Proposal 4',
+    'Proposal 5',
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            StreamBuilder(
-              stream: Stream.periodic(
-                const Duration(seconds: 1),
-              ),
-              builder: (context, snapshot) {
-                String tdata = DateFormat("hh:mm:ss a").format(
-                  DateTime.now(),
-                );
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      Jiffy(dt).yMMMMd,
-                      style: const TextStyle(
-                        fontFamily: 'PopM',
-                        fontSize: 12,
-                        color: Colors.black,
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        iconTheme: IconThemeData(color: white),
+        titleSpacing: 0,
+        title: Text(
+          "Pre Initiation Physical Tracking",
+          style: TextStyle(
+            color: white,
+            fontFamily: 'PopS',
+            fontSize: 13,
+            fontWeight: FontWeight.w300,
+          ),
+          textAlign: TextAlign.left,
+        ),
+      ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 10,
                       ),
-                    ),
-                    SizedBox(
-                      width: 4,
-                    ),
-                    Text(
-                      tdata,
-                      style: TextStyle(
-                        fontFamily: 'PopM',
-                        fontSize: 12,
-                        color: secondaryColor,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 7,
-                    ),
-                  ],
-                );
-              },
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'State: ',
-                            style: TextStyle(
-                              fontFamily: 'PopM',
-                              fontSize: 13,
-                              color: black,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Text(
-                              'Jammu & Kashmir',
-                              maxLines: 2,
-                              style: TextStyle(
-                                fontFamily: 'PopB',
-                                fontSize: 13,
-                                color: primaryColor,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Current Proposals: ',
-                            style: TextStyle(
-                              fontFamily: 'PopM',
-                              fontSize: 13,
-                              color: black,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 4,
-                          ),
-                          Text(
-                            '12',
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontFamily: 'PopB',
-                              fontSize: 13,
-                              color: primaryColor,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Divider(
-              color: secondaryColor,
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Tracking Log',
-                    style: TextStyle(
-                      fontFamily: 'PopS',
-                      fontSize: 17,
-                      color: black,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.refresh_sharp,
-                    color: Colors.green,
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: LazyDataTable(
-                rows: 8,
-                columns: 7,
-                tableDimensions: LazyDataTableDimensions(
-                  cellHeight: 50,
-                  cellWidth: 100,
-                  topHeaderHeight: 50,
-                  leftHeaderWidth: 75,
-                ),
-                topHeaderBuilder: (i) {
-                  return Container(
-                    color: primaryColor,
-                    child: Center(
-                      child: Text(
-                        i == 0
-                            ? "Activity Type"
-                            : i == 1
-                                ? "Proposals"
-                                : i == 2
-                                    ? "Beneficiary"
-                                    : i == 3
-                                        ? "District"
-                                        : i == 4
-                                            ? "Date & Time"
-                                            : i == 5
-                                                ? "Status"
-                                                : i == 6
-                                                    ? "Action"
-                                                    : "",
+                      Text(
+                        'State: ',
                         style: TextStyle(
                           fontFamily: 'PopM',
-                          fontSize: 12,
-                          color: white,
+                          fontSize: 13,
+                          color: black,
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Text(
+                          'Jammu & Kashmir',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopB',
+                            fontSize: 14,
+                            color: primaryColor,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              StreamBuilder(
+                stream: Stream.periodic(
+                  const Duration(seconds: 1),
+                ),
+                builder: (context, snapshot) {
+                  String tdata = DateFormat("hh:mm:ss a").format(
+                    DateTime.now(),
+                  );
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        Jiffy(dt).yMMMMd,
+                        style: const TextStyle(
+                          fontFamily: 'PopM',
+                          fontSize: 11,
+                          color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        tdata,
+                        style: TextStyle(
+                          fontFamily: 'PopM',
+                          fontSize: 11,
+                          color: secondaryColor,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 7,
+                      ),
+                    ],
                   );
                 },
-                leftHeaderBuilder: (i) {
-                  int ii = i + 1;
-                  return Container(
-                    color: white,
-                    child: Center(
-                      child: Text(
-                        ii.toString(),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 28.0,
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(80),
+                color: primaryColor,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        'assets/icons/proposals.png',
+                        height: 15,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Proposal Status',
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontFamily: 'PopB',
+                        fontSize: 14,
+                        color: white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              children: [
+                Text(
+                  'Select Proposal: ',
+                  maxLines: 2,
+                  style: TextStyle(
+                    fontFamily: 'PopB',
+                    fontSize: 14,
+                    color: black,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  width: 17,
+                ),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: primaryColor.withOpacity(0.3),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          // Initial Value
+                          value: dropdownvalue,
+                          isExpanded: true,
+                          // Down Arrow Icon
+                          icon: const Icon(Icons.keyboard_arrow_down),
+
+                          // Array list of items
+                          items: items.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                          }).toList(),
+                          // After selecting the desired option,it will
+                          // change button value to selected value
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownvalue = newValue!;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Scheme: ',
+                        maxLines: 2,
                         style: TextStyle(
                           fontFamily: 'PopS',
-                          fontSize: 14,
+                          fontSize: 12,
                           color: black,
                         ),
                         textAlign: TextAlign.center,
                       ),
-                    ),
-                  );
-                },
-                dataCellBuilder: (i, j) => Center(
-                  child: j == 6
-                      ? ElevatedButton(
-                          onPressed: () {
-                            showModalBottomSheet<void>(
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Padding(
-                                  padding: MediaQuery.of(context).viewInsets,
-                                  child: _viewArea(),
-                                );
-                              },
-                            );
-                          },
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                              primaryColor.withOpacity(0.3),
-                            ),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                            ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Text(
+                          'Silk Smagra- II',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopM',
+                            fontSize: 12,
+                            color: primaryColor,
                           ),
-                          child: Text('View'),
-                        )
-                      : Text(
-                          "Cell: $i, $j",
+                          textAlign: TextAlign.start,
                         ),
+                      ),
+                    ],
+                  ),
                 ),
-                topLeftCornerWidget: Container(
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Text(
+                        'Sector: ',
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontFamily: 'PopS',
+                          fontSize: 12,
+                          color: black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Text(
+                          'Pre- coccon',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopM',
+                            fontSize: 12,
+                            color: primaryColor,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Component: ',
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontFamily: 'PopS',
+                          fontSize: 12,
+                          color: black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Text(
+                          'Support for development of Kis an Nurseries for Mulberry & Vany a',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopM',
+                            fontSize: 12,
+                            color: primaryColor,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Sub - Component: ',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopS',
+                            fontSize: 12,
+                            color: black,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Text(
+                          'Pre- coccon',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopM',
+                            fontSize: 12,
+                            color: primaryColor,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Total Beneficiaries: ',
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontFamily: 'PopS',
+                          fontSize: 12,
+                          color: black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Text(
+                          '40',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopM',
+                            fontSize: 12,
+                            color: primaryColor,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Beneficiaries Left: ',
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontFamily: 'PopS',
+                          fontSize: 12,
+                          color: black,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Text(
+                          '20',
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontFamily: 'PopM',
+                            fontSize: 12,
+                            color: primaryColor,
+                          ),
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      Icon(
+                        Icons.refresh_sharp,
+                        color: Colors.green,
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: LazyDataTable(
+              rows: 7,
+              columns: 6,
+              tableDimensions: LazyDataTableDimensions(
+                cellHeight: 50,
+                cellWidth: 100,
+                topHeaderHeight: 50,
+                leftHeaderWidth: 75,
+              ),
+              topHeaderBuilder: (i) {
+                return Container(
                   color: primaryColor,
                   child: Center(
                     child: Text(
-                      "S.No",
+                      i == 0
+                          ? "Beneficiary"
+                          : i == 1
+                              ? "Category"
+                              : i == 2
+                                  ? "District"
+                                  : i == 3
+                                      ? "Address"
+                                      : i == 4
+                                          ? "Aadhar Number"
+                                          : i == 5
+                                              ? "Action"
+                                              : i == 6
+                                                  ? "Action"
+                                                  : "",
                       style: TextStyle(
-                        fontFamily: 'PopS',
-                        fontSize: 17,
+                        fontFamily: 'PopM',
+                        fontSize: 12,
                         color: white,
                       ),
                       textAlign: TextAlign.center,
                     ),
                   ),
+                );
+              },
+              leftHeaderBuilder: (i) {
+                int ii = i + 1;
+                return Container(
+                  color: white,
+                  child: Center(
+                    child: Text(
+                      ii.toString(),
+                      style: TextStyle(
+                        fontFamily: 'PopS',
+                        fontSize: 14,
+                        color: black,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                );
+              },
+              dataCellBuilder: (i, j) => Center(
+                child: j == 5
+                    ? ElevatedButton(
+                        onPressed: () {
+                          showModalBottomSheet<void>(
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Padding(
+                                padding: MediaQuery.of(context).viewInsets,
+                                child: _viewArea(),
+                              );
+                            },
+                          );
+                        },
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.green),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                          ),
+                        ),
+                        child: Text('View'),
+                      )
+                    : Text(
+                        "Cell: $i, $j",
+                      ),
+              ),
+              topLeftCornerWidget: Container(
+                color: primaryColor,
+                child: Center(
+                  child: Text(
+                    "S.No",
+                    style: TextStyle(
+                      fontFamily: 'PopS',
+                      fontSize: 17,
+                      color: white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

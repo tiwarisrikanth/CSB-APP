@@ -4,6 +4,9 @@ import 'package:csbapp/view/auth/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../view/about/about_app.dart';
+import '../view/about/privacy.dart';
+
 class DrawerWidgets extends StatefulWidget {
   const DrawerWidgets({super.key});
 
@@ -83,31 +86,51 @@ class _DrawerWidgetsState extends State<DrawerWidgets> {
                       height: 15,
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "About Application",
-                          style: TextStyle(
-                            fontFamily: 'PopM',
-                            fontSize: 15,
-                            color: black,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) => AboutApplication(),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "About Application",
+                            style: TextStyle(
+                              fontFamily: 'PopM',
+                              fontSize: 15,
+                              color: black,
+                            ),
                           ),
                         ),
                       ),
                     ),
                     Divider(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Policy & Liscence",
-                          style: TextStyle(
-                            fontFamily: 'PopM',
-                            fontSize: 15,
-                            color: black,
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) => PrivacyPolicy(),
+                          ),
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Policy & Liscence",
+                            style: TextStyle(
+                              fontFamily: 'PopM',
+                              fontSize: 15,
+                              color: black,
+                            ),
                           ),
                         ),
                       ),
@@ -117,10 +140,13 @@ class _DrawerWidgetsState extends State<DrawerWidgets> {
                 ),
               ),
             ),
-            Image.asset(
-              'assets/images/logo.png',
-              height: 160,
-              width: 160,
+            Hero(
+              tag: 'Draw',
+              child: Image.asset(
+                'assets/images/logo.png',
+                height: 160,
+                width: 160,
+              ),
             ),
             SizedBox(
               height: 170,
